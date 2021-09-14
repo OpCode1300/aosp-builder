@@ -2,7 +2,7 @@
 set -eox pipefail
 
 repo init -u https://android.googlesource.com/platform/manifest -b android-11.0.0_r15
-repo sync -j32
+repo sync -j$(nproc --all)
 
 driver_package_urls=(
     https://dl.google.com/dl/android/aosp/google_devices-redfin-rd1a.201105.003.c1-e5276f63.tgz
@@ -19,4 +19,4 @@ done
 source build/envsetup.sh
 
 lunch aosp_redfin-userdebug
-m droid -j32
+m droid -j$(nproc --all)
